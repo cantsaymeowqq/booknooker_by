@@ -15,12 +15,12 @@ services:
   db:
     image: postgres:14
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - pg_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: booknooker_by
       POSTGRES_PASSWORD: booknooker_by
       POSTGRES_DB: booknooker_by
     ports:
-      - "5432:5433"
+      - "5433:5432"
 volumes:
-  postgres_data:
+  pg_data:
