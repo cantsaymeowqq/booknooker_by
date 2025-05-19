@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/images/backend.Dockerfile
+    ports:
+      - "8001:8000"
+    env_file:
+      - ../.env
+    depends_on:
+      - db
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: booknooker_by
+      POSTGRES_PASSWORD: booknooker_by
+      POSTGRES_DB: booknooker_by
+    ports:
+      - "8000:8000"
