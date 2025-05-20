@@ -4,6 +4,8 @@ services:
     build:
       context: ..
       dockerfile: docker/images/backend.Dockerfile
+    volumes:
+      - ..:/app
     ports:
       - "8001:8000"
     env_file:
@@ -11,10 +13,14 @@ services:
     depends_on:
       - db
   db:
-    image: postgres:13
+    image: postgres:14
+    volumes:
+      - pg_data:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: booknooker_by
       POSTGRES_PASSWORD: booknooker_by
       POSTGRES_DB: booknooker_by
     ports:
-      - "8000:8000"
+      - "5433:5432"
+volumes:
+  pg_data:
